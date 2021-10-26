@@ -1,0 +1,130 @@
+---- instalar o nginx
+
+//comando para instalar
+apt install nginx
+
+//habilita o nginx na inicialização do sistema
+systemctl enable nginx
+
+//start o serviço
+systemctl start nginx
+
+//verificar versão instalada do nginx
+nginx -v
+
+
+======================= APACHE2
+
+apt install apache2
+
+systemctl start apache2
+
+
+sudo apt show php
+Ou
+
+sudo apt show php -a
+
+Para instalar a versão do PHP dos repositórios do Ubuntu, utilize o comando abaixo:
+
+sudo apt install php
+Instalando versões diferentes do PHP (5.6, 7.0, 7.1, 7.2, 7.3, 7.4 ou 8.0) no Ubuntu usando PPA
+1. O primeiro passo para instalar diferentes versões do PHP é adicionar o PPA mantido por Ondrej Surý no Ubuntu.
+
+sudo add-apt-repository ppa:ondrej/php
+2. Agora, é preciso que você atualize o sistema:
+
+sudo apt update
+3. Agora, vamos instalar as versões diferentes do PHP no Ubuntu
+Para quem utiliza o Apache, execute os comandos abaixo para instalar as versões diferentes do PHP no Ubuntu:
+PHP 5.6
+
+sudo apt install php5.6
+PHP 7.0
+
+sudo apt install php7.0
+PHP 7.1
+
+sudo apt install php7.1
+PHP 7.2
+
+sudo apt install php7.2
+PHP 7.3
+
+sudo apt install php7.3
+PHP 7.4
+
+sudo apt install php7.4
+PHP 8.0
+
+sudo apt install php8.0
+Pra quem utiliza o Nginx, execute os comandos abaixo para instalar as versões diferentes do PHP no Ubuntu:
+PHP 5.6
+
+sudo apt install php5.6-fpm
+PHP 7.0
+
+sudo apt install php7.0-fpm
+PHP 7.1
+
+sudo apt install php7.1-fpm
+PHP 7.2
+
+sudo apt install php7.2-fpm
+PHP 7.3
+
+sudo apt install php7.3-fpm
+PHP 7.4
+
+sudo apt install php7.4-fpm
+PHP 8.0
+
+sudo apt install php8.0-fpm
+4. Para instalar qualquer módulo PHP, especifique a versão do PHP e use o recurso de auto-completar para visualizar todos o módulos disponíveis.
+
+5. Agora você pode instalar os módulos mais necessários, basta trocar a versão pela do PHP ou das versões que você quer instalar, perceba que abaixo estou instalando apenas o PHP 7.4:
+
+sudo apt install php7.4-curl php7.4-gd php7.4-json php7.4-mbstring php7.4-mcrypt
+6. Finalmente, você pode verificar a versão do PHP usada no sistema:
+
+php -v
+Selecione a versão padrão do PHP
+7. Você pode selecionar a versão padrão do PHP utilizando o comando update-alternatives, após fazer isso, rode o comando anterior para confirmar:
+
+PHP 5.6
+
+sudo update-alternatives –set php /usr/bin/php5.6
+PHP 7.0
+
+sudo update-alternatives –set php /usr/bin/php7.0
+PHP 7.1
+
+sudo update-alternatives –set php /usr/bin/php7.1
+PHP 7.2
+
+sudo update-alternatives –set php /usr/bin/php7.2
+PHP 7.3
+
+sudo update-alternatives –set php /usr/bin/php7.3
+PHP 7.4
+
+sudo update-alternatives –set php /usr/bin/php7.4
+PHP 8.0
+
+sudo update-alternatives –set php /usr/bin/php8.0
+ 
+
+8. Para selecionar a versão do PHP que irá trabalhar com o Apache, primeiro desabilite a versão atual com o comando a2dismod e depois habilite a versão que precisa com o comando a2enmod:
+
+Exemplo para desabilitar o php7.0, troque o 7.0 pela versão correspondente a qual deseja desabilitar:
+
+sudo a2dismod php7.0
+Agora, veja o modelo abaixo para habilitar, estou habilitando a versão 7.4:
+
+sudo a2enmod php7.4
+Por fim, vamos reiniciar o Apache:
+
+sudo systemctl restart apache2
+9. Após alterar a versão, você pode encontrar seu arquivo de configuração do PHP com o seguinte comando:
+
+php -i | grep “Loaded Configuration File”
