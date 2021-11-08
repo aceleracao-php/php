@@ -1,0 +1,17 @@
+Pessoa {
+    nome, idade, cpf, rg, data_nascimento
+    [
+        Contador {cod}, GET e SET **__toString, **__destruct
+        Mestre de Obra {carga horaria}, GET e SET
+        Aluno {frequencia, faltas = 25, boletim = (n1, n2, media[Aprovado = 6, Reprovado < 6])},
+        Professor {carga horaria, frequencia}
+    ]    
+} Interface Servicos implementa buscaDados();
+
+Listas para cada classe (array) - 5 obj
+
+JSON é o formato ideal
+Grave em arquivo (informacoes.txt)
+
+Recuperar o arquivo com as informações
+STD Class 
