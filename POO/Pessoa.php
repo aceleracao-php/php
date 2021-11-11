@@ -1,21 +1,16 @@
 <?php
-
-namespace interno;
+namespace externo;
 
 class Pessoa{
     private String $nome;
     private int $idade;
     private String $sexo;
-    private float $altura;
-    private static String $peso;
     //metodo magico
     
-    public function __construct(String $nome, int $idade, String $sexo, float $altura, String $peso){
+    public function __construct(String $nome, int $idade, String $sexo){
         $this->nome = $nome;
         $this->idade = $idade;
         $this->sexo = $sexo;
-        $this->altura = $altura;
-        Pessoa::$peso = $peso;
     }
     //metodo magico
     /*public function __destruct()
@@ -32,9 +27,6 @@ class Pessoa{
         return $this->nome;
     }
 
-    function getAltura(){
-        return $this->altura;
-    }
 
     //set
     function setNome($nome){
@@ -46,9 +38,7 @@ class Pessoa{
     {
         $pessoa = array( 
             "Nome" => $this->nome,
-            "Altura" => $this->altura,
             "Sexo" => $this->sexo,
-            "Peso" => $this->peso,
             "Idade" => $this->idade
         );
 

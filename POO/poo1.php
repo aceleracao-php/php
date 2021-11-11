@@ -2,11 +2,18 @@
 //Força aparecer erros do PHP
 //ini_set('display_errors', '1');
 
-require_once("Classes/Pessoa.php");
+/*require_once("Classes/Pessoa.php");
 require_once("Classes/Engenheiro.php");
 require_once("Classes/Medico.php");
 require_once("Classes/ProfessorRegente.php");
-require_once("Classes/ProfessorApoio.php");
+require_once("Classes/ProfessorApoio.php");*/
+
+function capturaClasse($nomeClasse){
+    echo $nomeClasse . "<br>";
+    require_once("Classes". DIRECTORY_SEPARATOR .$nomeClasse.".php");
+}
+//Serve para registrar 1 ou várias funções de autoload
+spl_autoload_register("capturaClasse");
 
 $p1 = new Pessoa("Jonatan", 15, 'M', 2.80, 60);
 $p2 = new Pessoa("Maria", 20, 'F', 1,50, 50);
@@ -50,7 +57,5 @@ echo gettype($altura) . "<br>";
 //alterar tipo
 echo settype($altura, "int");*/
 //var_dump($p1);
-
-
 
 ?>
