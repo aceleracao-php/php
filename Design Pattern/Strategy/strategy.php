@@ -28,14 +28,16 @@ class ICMS implements calculaImposto{
 
     function calcula()
     {
-        $this->valor * 0.05;
+        return $this->valor * 0.05;
     }
 }
 
 class KCV implements calculaImposto{
+    private $valor;
+    
     function calcula()
     {
-        $this->valor * 0.02;
+        return $this->valor * 0.02;
     }
 }
 
