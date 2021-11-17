@@ -1,6 +1,6 @@
 <?php
 
-class Imposto{
+class Produto{
     private $valor;
 
     function getValor(){
@@ -13,31 +13,29 @@ class Imposto{
 }
 
 interface calculaImposto{
-    function calcula();
+    function calcula(Produto $produto);
 }
 
 class Calculo{
 
-    public function calculaImposto(calculaImposto $imposto){
-        return $imposto->calcula();
+    public function calculaImposto(calculaImposto $imposto, Produto $produto){
+        return $imposto->calcula($produto);
     }
 }
 
 class ICMS implements calculaImposto{
-    private $valor;
 
-    function calcula()
+    function calcula(Produto $produto)
     {
-        return $this->valor * 0.05;
+        return $produto->valor * 0.05;
     }
 }
 
 class KCV implements calculaImposto{
-    private $valor;
     
-    function calcula()
+    function calcula(Produto $produto)
     {
-        return $this->valor * 0.02;
+        return $produto->valor * 0.02;
     }
 }
 
