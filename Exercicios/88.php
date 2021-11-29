@@ -51,7 +51,7 @@ public class ClienteServices implements IClienteServices
                echo "Dados inválidos";
 
            $this->clienteRepository->AdicionarCliente($cliente);
-           $this->emailServices->Enviar("empresa@empresa.com", $cliente.Email, "Bem Vindo", "Parabéns está Cadastrado");
+           $this->emailServices->Enviar("empresa@empresa.com", "fulano@empresa.com", "Bem Vindo", "Parabéns está Cadastrado");
 
            return "$cliente cadastrado com sucesso";
        }
