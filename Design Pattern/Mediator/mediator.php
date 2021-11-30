@@ -1,20 +1,5 @@
 <?php
 
-namespace RefactoringGuru\Mediator\RealWorld;
-
-/**
-  * A classe Event Dispatcher atua como um Mediador e contém a assinatura
-  * e lógica de notificação. Embora um mediador clássico muitas vezes dependa de concreto
-  * classes de componentes, esta só está ligada às suas interfaces abstratas.
-  *
-  * Somos capazes de atingir esse nível de indireção graças à maneira como o
-  * conexões entre componentes são estabelecidas. Os próprios componentes podem
-  * inscrever-se em eventos específicos de seu interesse por meio do Mediator's
-  * interface de assinatura.
-  *
-  * Observe, não podemos usar as interfaces Subject / Observer integradas do PHP aqui
-  * porque os estenderemos muito além do que foram projetados.
-  */
 class EventDispatcher
 {
     /**
@@ -269,8 +254,8 @@ events()->attach($onboarding, "users:created");
 $repository->initialize(__DIR__ . "users.csv");
 
 $user = $repository->createUser([
-    "name" => "John Smith",
-    "email" => "john99@example.com",
+    "name" => "Jonatan Santos",
+    "email" => "jo5555@example.com",
 ]);
 
 $user->delete();
