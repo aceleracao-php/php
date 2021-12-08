@@ -13,7 +13,7 @@ class CreateArtigosTable extends Migration
      */
     public function up()
     {
-        Schema::create('artigos', function (Blueprint $table) {
+        Schema::create('artigo_dos_professores', function (Blueprint $table) {
             $table->id();
             $table->string('title', 150);
             $table->text('resumo');

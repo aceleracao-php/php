@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{UsuarioController};
+use App\Http\Controllers\{UsuarioController, ArtigoController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/usuarios', [UsuarioController::class, 'index']);
+Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+Route::get('/artigos', [ArtigoController::class, 'index'])->name('artigos.index');
+Route::get('/artigos/{id}', [ArtigoController::class, 'exibe'])->name('artigos.exibe');
