@@ -20,4 +20,7 @@ Route::get('/', function () {
 
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
 Route::get('/artigos', [ArtigoController::class, 'index'])->name('artigos.index');
+Route::get('/artigos/novo', [ArtigoController::class, 'novo'])->name('artigos.novo');
+Route::post('/artigos', [ArtigoController::class, 'insere'])->name('artigos.inserir');
+Route::delete('/artigos/remover/{id}', [ArtigoController::class, 'remover'])->name('artigos.remover');
 Route::get('/artigos/{id}', [ArtigoController::class, 'exibe'])->name('artigos.exibe');
