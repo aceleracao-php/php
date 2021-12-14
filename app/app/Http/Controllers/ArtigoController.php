@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 class ArtigoController extends Controller
 {
     function index(){
-        $artigos = Artigo::all();
-
+        //$artigos = Artigo::all(); 
+        //$artigos = Artigo::paginate(1);
+        //$artigos = Artigo::orderBy('title', 'ASC')->paginate(2);
+        $artigos = Artigo::latest()->paginate();
         return view('artigo', compact('artigos'));
     }
 
@@ -48,5 +50,26 @@ class ArtigoController extends Controller
 
         $artigo->delete();
         return redirect()->route('artigos.index')->with('mensagem', "Artigo:{$id} foi deletado com sucesso!");
+    }
+
+    function editar($id){
+        $artigo = Artigo::find($id);
+
+        if(!$artigo):
+            return redirect()->back();
+        endif;
+
+        return view('admin.alteraartigo', compact('artigo'));
+    }
+
+    public function update(UpdateInsertArtigo $form, $id){
+        $artigo = Artigo::find($id);
+
+        if(!$artigo):
+            return redirect()->back();
+        endif;
+
+        $artigo->update($form->all());
+        return redirect()->route('artigos.index')->with('mensagem', "Artigo ##{$id} foi alterado com sucesso!");
     }
 }
