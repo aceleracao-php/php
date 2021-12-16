@@ -8,6 +8,10 @@
 @if (session('mensagem'))
      <p style="color: green;">{{ session('mensagem')}}</p>    
 @endif
+
+@if (session('error'))
+     <p style="color: red;">{{ session('error')}}</p>    
+@endif
 <h1>Meus artigos </h1>
 <br>
 <ul>

@@ -12,7 +12,7 @@ class ArtigoController extends Controller
         //$artigos = Artigo::all(); 
         //$artigos = Artigo::paginate(1);
         //$artigos = Artigo::orderBy('title', 'ASC')->paginate(2);
-        $artigos = Artigo::latest()->paginate();
+        $artigos = Artigo::latest()->paginate(25);
         return view('artigo', compact('artigos'));
     }
 
@@ -71,5 +71,14 @@ class ArtigoController extends Controller
 
         $artigo->update($form->all());
         return redirect()->route('artigos.index')->with('mensagem', "Artigo ##{$id} foi alterado com sucesso!");
+    }
+
+    public function login(){
+        $usuario = ["id" => rand(4568, 155645), "name" => "Jonatan"];
+        session(["usuario" => $usuario]);
+    }
+
+    public function logout(){
+        session()->forget('usuario');
     }
 }
