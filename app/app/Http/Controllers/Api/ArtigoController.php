@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{UpdateInsertArtigo};
+use App\Http\Resources\ArtigoResource;
+use App\Http\Resources\ArtigoResourceCollection;
 use App\Models\Artigo;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,8 @@ class ArtigoController extends Controller
         //$artigos = Artigo::orderBy('title', 'ASC')->paginate(2);
         $artigos = Artigo::paginate(10);
         //return view('artigo', compact('artigos'));
-        return response()->json($artigos);
+        //return response()->json($artigos);
+        return new ArtigoResourceCollection($artigos);
     }
 
     function exibe($id){
@@ -25,8 +28,9 @@ class ArtigoController extends Controller
             return response()->json(['code' => '500', 'msg' => 'Erro ao exibir o Artigo | Ou o artigo não existe']);
         }
         
-        return response()->json($artigo);
+        //return response()->json($artigo);
         //return view('exibe', compact('artigo'));
+        return new ArtigoResource($artigo);
     }
 
     function insere(Request $form){
