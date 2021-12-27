@@ -17,8 +17,16 @@ class ArtigoResource extends JsonResource
         /*return [
             'id' => $this->id,
             'title' => $this->title,
-            'extra_information' => 'Essa API é de teste, não use em produção'
+            'resumo' => $this->resumo,
+            'content' => $this->content
         ];*/
         return $this->resource->toArray();
+    }
+
+    public function with($request)
+    {
+        return [
+            'extra_information' => 'Essa API esta no ambiente de [TESTE] | Warning: Not used in production'
+        ];   
     }
 }

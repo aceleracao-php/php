@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        JsonResource::withoutWrapping();
-        //JsonResource::wrap('listagem');
+        //JsonResource::withoutWrapping();
+        JsonResource::wrap('listagem');
     }
 }

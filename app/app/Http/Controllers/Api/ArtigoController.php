@@ -7,18 +7,36 @@ use App\Http\Requests\{UpdateInsertArtigo};
 use App\Http\Resources\ArtigoResource;
 use App\Http\Resources\ArtigoResourceCollection;
 use App\Models\Artigo;
+use App\Repository\ArtigoRepository;
 use Illuminate\Http\Request;
 
 class ArtigoController extends Controller
 {
-    function index(){
+    private $model;
+
+    public function __construct(Artigo $model){
+        $this->model = $model;
+    }
+
+    function index(Request $request){
         //$artigos = Artigo::all(); 
         //$artigos = Artigo::paginate(1);
         //$artigos = Artigo::orderBy('title', 'ASC')->paginate(2);
-        $artigos = Artigo::paginate(10);
+        //$artigos = Artigo::paginate(10);
         //return view('artigo', compact('artigos'));
         //return response()->json($artigos);
-        return new ArtigoResourceCollection($artigos);
+        $artigos = $this->model;
+        $artigoRepository = new ArtigoRepository($artigos);
+        if($request->has('campos')):
+            $artigos = $artigoRepository->filtraCampos($request);
+        endif;
+
+        if($request->has('conditions')):
+            $artigos = $artigoRepository->filtraComCondicao($request);
+        endif;
+        
+        
+        return new ArtigoResourceCollection($artigos->paginate(25));
     }
 
     function exibe($id){
@@ -33,7 +51,7 @@ class ArtigoController extends Controller
         return new ArtigoResource($artigo);
     }
 
-    function insere(Request $form){
+    function insere(UpdateInsertArtigo $form){
         //dd($form->all());
         //dd($form->resumo);
         $pagina = $form->code;
@@ -58,7 +76,7 @@ class ArtigoController extends Controller
         return response()->json(['code' => '200', 'msg' => 'Artigo Removido com sucesso']);
     }
 
-    public function update(Request $form, $id){
+    public function update(UpdateInsertArtigo $form, $id){
         $artigo = Artigo::find($id);
 
         if(!$artigo):
