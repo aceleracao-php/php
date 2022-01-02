@@ -41,8 +41,18 @@ Route::get('/artigos/all', function(){
 Route::namespace('App\Http\Controllers\Api')->group(function(){
     
     Route::post('/login', 'LoginApiController@login');
+    Route::get('/logout', 'LoginApiController@logout');
+    Route::get('/refresh', 'LoginApiController@refresh')->name('refresh');
 
-    Route::group(["middleware" => "jwt.auth"], function(){
+    Route::prefix('artigos')->group(function(){
+        Route::get('/all', 'ArtigoController@index');
+        Route::post('/novo', 'ArtigoController@insere');
+        Route::get('/{id}', 'ArtigoController@exibe');
+        Route::put('/{id}', 'ArtigoController@update');
+        Route::delete('/{id}', 'ArtigoController@remover');
+    });
+
+    /*Route::group(["middleware" => ["jwt.auth"]], function(){
         Route::prefix('artigos')->group(function(){
             Route::get('/all', 'ArtigoController@index');
             Route::post('/novo', 'ArtigoController@insere');
@@ -56,7 +66,7 @@ Route::namespace('App\Http\Controllers\Api')->group(function(){
         //Route::apiResource('/revistas', 'RevistaController');
         Route::get('/revistas/busca', 'RevistaController@buscaRevistaAtual')->name('revistas.busca');
         Route::resource('/revistas', 'RevistaController');
-    });
+    });*/
 });
 
 

@@ -16,6 +16,7 @@ class ArtigoController extends Controller
 
     public function __construct(Artigo $model){
         $this->model = $model;
+        $this->middleware('jwt.auth');
     }
 
     function index(Request $request){
@@ -25,6 +26,7 @@ class ArtigoController extends Controller
         //$artigos = Artigo::paginate(10);
         //return view('artigo', compact('artigos'));
         //return response()->json($artigos);
+
         $artigos = $this->model;
         $artigoRepository = new ArtigoRepository($artigos);
         if($request->has('campos')):
