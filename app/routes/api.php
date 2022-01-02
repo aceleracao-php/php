@@ -40,19 +40,23 @@ Route::get('/artigos/all', function(){
 
 Route::namespace('App\Http\Controllers\Api')->group(function(){
     
-    Route::prefix('artigos')->group(function(){
-        Route::get('/all', 'ArtigoController@index');
-        Route::post('/novo', 'ArtigoController@insere')->middleware('auth.basic');
-        Route::get('/{id}', 'ArtigoController@exibe');
-        Route::put('/{id}', 'ArtigoController@update')->middleware('auth.basic');;
-        Route::delete('/{id}', 'ArtigoController@remover')->middleware('auth.basic');;
-    });
+    Route::post('/login', 'LoginApiController@login');
 
-    //Route::resource('/revistas', 'RevistaController')->only(['index', 'store']);
-    //Route::resource('/revistas', 'RevistaController')->except(['store']);
-    //Route::apiResource('/revistas', 'RevistaController');
-    Route::get('/revistas/busca', 'RevistaController@buscaRevistaAtual')->name('revistas.busca');
-    Route::resource('/revistas', 'RevistaController');
+    Route::group(["middleware" => "jwt.auth"], function(){
+        Route::prefix('artigos')->group(function(){
+            Route::get('/all', 'ArtigoController@index');
+            Route::post('/novo', 'ArtigoController@insere');
+            Route::get('/{id}', 'ArtigoController@exibe');
+            Route::put('/{id}', 'ArtigoController@update');
+            Route::delete('/{id}', 'ArtigoController@remover');
+        });
+    
+        //Route::resource('/revistas', 'RevistaController')->only(['index', 'store']);
+        //Route::resource('/revistas', 'RevistaController')->except(['store']);
+        //Route::apiResource('/revistas', 'RevistaController');
+        Route::get('/revistas/busca', 'RevistaController@buscaRevistaAtual')->name('revistas.busca');
+        Route::resource('/revistas', 'RevistaController');
+    });
 });
 
 

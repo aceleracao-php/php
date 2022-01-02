@@ -1,5 +1,6 @@
 {
-  "require":{
-    "kevinlebrun/slug.php": "*"
-  }
+    "require": {
+        "kevinlebrun/slug.php": "*",
+        "lcobucci/jwt": "*"
+    }
 }

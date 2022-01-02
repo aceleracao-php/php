@@ -10,7 +10,7 @@ $header = [
 //payload ou body
 $payload = [
     'exp' => (new DateTime("now"))->getTimestamp(),
-    'uid' => 1,
+    'uid' => 1526,
     'email' => 'email@email.com'
 ];
 
@@ -22,7 +22,7 @@ $payload = json_encode($payload);
 $header = base64_encode($header);
 $payload = base64_encode($payload);
 
-//assinatura
+//4- assinatura
 $sign = hash_hmac('sha256', $header. ".". $payload, $key, true);
 $sign = base64_encode($sign);
 
