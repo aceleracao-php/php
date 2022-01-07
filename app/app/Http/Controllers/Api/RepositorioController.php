@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artigo;
 use App\Models\Revista;
 use Illuminate\Http\Request;
 
-class RevistaController extends Controller
+class RepositorioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,13 @@ class RevistaController extends Controller
      */
     public function index()
     {
-        //return response()->json(['msg' => __METHOD__]);
-        return response()->json(["revistas" => Revista::paginate(15)], 200);
-    }
+        $artigos = Artigo::paginate(10);
+        $revistas = Revista::paginate(5);
 
-    public function buscaRevistaAtual(){
-        //faz algo
+        return response()->json([
+            "Artigos" => $artigos,
+            "Revistas" => $revistas
+        ], 280);
     }
 
     /**
@@ -31,7 +33,7 @@ class RevistaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

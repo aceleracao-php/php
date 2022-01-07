@@ -52,6 +52,9 @@ Route::namespace('App\Http\Controllers\Api')->group(function(){
         Route::delete('/{id}', 'ArtigoController@remover');
     });
 
+    Route::apiResource('/revistas', 'RevistaController');
+    Route::apiResource('/repositorio', 'RepositorioController');
+
     /*Route::group(["middleware" => ["jwt.auth"]], function(){
         Route::prefix('artigos')->group(function(){
             Route::get('/all', 'ArtigoController@index');

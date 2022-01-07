@@ -13,7 +13,7 @@ class CreateRevistasTable extends Migration
      */
     public function up()
     {
-        Schema::create('revistas', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('revistas', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 150);
             $table->string('edicao', 50);

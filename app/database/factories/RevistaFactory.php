@@ -14,7 +14,7 @@ class RevistaFactory extends Factory
     public function definition()
     {
         return [
-            "nome" => "Revista ATEMP: ##".$this->faker->name(),
+            "nome" => "Revista Postgres ATEMP: ##".$this->faker->name(),
             "edicao" => "Edition: ".$this->faker->randomNumber(5, true),
             "ano" => $this->faker->date('Y'),
             "tema" => $this->faker->sentence(1),

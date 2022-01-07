@@ -9,5 +9,6 @@ class Revista extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'edicao', 'ano', 'tema', 'views'];
+    protected $fillable = ["nome", "edicao", "ano", "tema", "views"];
+    protected $connection = "pgsql";
 }
