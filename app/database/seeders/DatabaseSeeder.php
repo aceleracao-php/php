@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Artigo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +17,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ArtigoSeeder::class,
-            RevistaSeeder::class
+            RevistaSeeder::class,
+            PublicacaoSeeder::class,
+            EscritorSeeder::class,
         ]);
     }
 }

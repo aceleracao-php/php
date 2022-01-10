@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRevistasTable extends Migration
+class CreateEscritorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateRevistasTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('revistas', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('escritores', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 150);
-            $table->string('edicao', 50);
-            $table->string('ano', 150);
-            $table->string('tema', 150);
-            $table->string('views', 8);
+            $table->string('nome');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateRevistasTable extends Migration
      */
     public function down()
     {
-        Schema::connection('pgsql')->dropIfExists('revistas');
+        Schema::connection('pgsql')->dropIfExists('escritores');
     }
 }

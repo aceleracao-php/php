@@ -53,6 +53,8 @@ Route::namespace('App\Http\Controllers\Api')->group(function(){
     });
 
     Route::apiResource('/revistas', 'RevistaController');
+    Route::apiResource('/publicacoes', 'PublicacaoController');
+    Route::apiResource('/escritores', 'EscritorController');
     Route::apiResource('/repositorio', 'RepositorioController');
 
     /*Route::group(["middleware" => ["jwt.auth"]], function(){
