@@ -17,8 +17,8 @@ class PublicacoesEscritores extends Migration
             $table->id();
             $table->unsignedBigInteger('publi_id');
             $table->unsignedBigInteger('esc_id');
-            $table->foreign('publi_id')->references('id')->on('publicacoes');
-            $table->foreign('esc_id')->references('id')->on('escritores');
+            $table->foreign('publi_id')->references('id')->on('publicacoes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('esc_id')->references('id')->on('escritores')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
