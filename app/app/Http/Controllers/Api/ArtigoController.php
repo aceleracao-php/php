@@ -7,6 +7,7 @@ use App\Http\Requests\{UpdateInsertArtigo};
 use App\Http\Resources\ArtigoResource;
 use App\Http\Resources\ArtigoResourceCollection;
 use App\Models\Artigo;
+use App\Models\ArtigoPgsql;
 use App\Repository\ArtigoRepository;
 use Illuminate\Http\Request;
 
@@ -14,16 +15,16 @@ class ArtigoController extends Controller
 {
     private $model;
 
-    public function __construct(Artigo $model){
+    public function __construct(ArtigoPgsql $model){
         $this->model = $model;
         $this->middleware('jwt.auth');
     }
 
     function index(Request $request){
-        //$artigos = Artigo::all(); 
-        //$artigos = Artigo::paginate(1);
-        //$artigos = Artigo::orderBy('title', 'ASC')->paginate(2);
-        //$artigos = Artigo::paginate(10);
+        //$artigos = $this->model->all(); 
+        //$artigos = $this->model->paginate(1);
+        //$artigos = $this->model->orderBy('title', 'ASC')->paginate(2);
+        //$artigos = $this->model->paginate(10);
         //return view('artigo', compact('artigos'));
         //return response()->json($artigos);
 
@@ -42,8 +43,8 @@ class ArtigoController extends Controller
     }
 
     function exibe($id){
-        //$artigo = Artigo::find($id);
-        $artigo = Artigo::where('id', $id)->first();
+        //$artigo = $this->model->find($id);
+        $artigo = $this->model->where('id', $id)->first();
         if(!$artigo){
             return response()->json(['code' => '500', 'msg' => 'Erro ao exibir o Artigo | Ou o artigo não existe']);
         }
@@ -58,7 +59,7 @@ class ArtigoController extends Controller
         //dd($form->resumo);
         $pagina = $form->code;
         
-        $artigo = Artigo::create($form->all());
+        $artigo = $this->model->create($form->all());
         if(!$artigo){
             dd($artigo);
         }
@@ -67,7 +68,7 @@ class ArtigoController extends Controller
     }
 
     function remover($id){
-        $artigo = Artigo::find($id);
+        $artigo = $this->model->find($id);
 
         if(!$artigo):
             return response()->json(['code' => '500', 'msg' => 'Erro ao deletar o Artigo']);
@@ -79,7 +80,7 @@ class ArtigoController extends Controller
     }
 
     public function update(UpdateInsertArtigo $form, $id){
-        $artigo = Artigo::find($id);
+        $artigo = $this->model->find($id);
 
         if(!$artigo):
             //return redirect()->back();

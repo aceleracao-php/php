@@ -14,7 +14,6 @@ class PublicacoesEscritores extends Migration
     public function up()
     {
         Schema::connection('pgsql')->create('publicacoes_de_escritores', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('publi_id');
             $table->unsignedBigInteger('esc_id');
             $table->foreign('publi_id')->references('id')->on('publicacoes')->onDelete('cascade')->onUpdate('cascade');

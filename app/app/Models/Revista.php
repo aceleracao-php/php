@@ -11,4 +11,8 @@ class Revista extends Model
 
     protected $fillable = ["nome", "edicao", "ano", "tema", "views"];
     protected $connection = "pgsql";
+
+    public function artigos(){
+        return $this->hasMany(ArtigoPgsql::class, 'id_revista', 'id');
+    }
 }

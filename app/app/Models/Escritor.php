@@ -11,4 +11,9 @@ class Escritor extends Model
     protected $connection = "pgsql";
     protected $table = "escritores";
     protected $fillable = ['nome', 'email', 'password'];
+    protected $primaryKey = 'id';
+
+    public function publicacoes(){
+        return $this->belongsToMany(Publicacao::class, "publicacoes_de_escritores", "esc_id", "publi_id");    
+    }
 }
