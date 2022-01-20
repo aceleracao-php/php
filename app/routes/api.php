@@ -56,6 +56,7 @@ Route::namespace('App\Http\Controllers\Api')->group(function(){
     Route::apiResource('/publicacoes', 'PublicacaoController');
     Route::apiResource('/escritores', 'EscritorController');
     Route::apiResource('/repositorio', 'RepositorioController');
+    Route::apiResource('/revistamongo', 'RevistaMongoController');
 
     /*Route::group(["middleware" => ["jwt.auth"]], function(){
         Route::prefix('artigos')->group(function(){

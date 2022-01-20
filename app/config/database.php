@@ -78,6 +78,16 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'url' => env('DATABASE_URL_3'),
+            'host' => env('DB_HOST_3', '127.0.0.1'),
+            'port' => env('DB_PORT_3', '27017'),
+            'database' => env('DB_DATABASE_3', 'forge'),
+            'username' => env('DB_USERNAME_3', 'forge'),
+            'password' => env('DB_PASSWORD_3', '')
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
